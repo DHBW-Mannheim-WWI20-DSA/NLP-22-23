@@ -10,3 +10,9 @@ Modellverteilung:
 Tobi, Daniel Transformer, Tensorflow (CNN, NN)
 Amina: Spacy
 Amin: NLTK
+
+Stand 06.01:
+Modelle (ohne Metadaten) stehen, Accuracy bis zu 99,2%. 
+- Nächster Schritt Modelle mit Metadaten trainieren: Gleiche Aufteilung der Modelle nun mit Datensatz inkl. Metadaten
+- Bisherige Modelle extrahieren und fürs Frontend bereitstellen
+- Anschließend ->  Vergleich: Zwischen ohne Metadaten trainierte und mit Metadaten trainierte Modelle
