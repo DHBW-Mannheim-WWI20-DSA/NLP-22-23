@@ -31,6 +31,6 @@ if __name__ == '__main__':
     predict_Spam_transformer(
         email_content="Hello, this is a test email",
         metadata_content="This is a test metadata",
-        path_to_model=pathlib.Path.joinpath(pathlib.Path.cwd(), "models", "meta", "Transformer"),
+        path_to_model=pathlib.Path.joinpath(pathlib.Path.cwd(), "models", "text", "Transformer"),
         metadata_used=True
     )
