@@ -1,5 +1,6 @@
 import sys
 import pathlib
+import asyncio
 from typing import Union
 
 from PyQt5.QtWidgets import QApplication, QComboBox, QFormLayout, QLabel, QLineEdit, QVBoxLayout, QWidget, \
@@ -68,7 +69,7 @@ class MainWindow(QWidget):
         # Analyse Button
         self.analyse_button = QPushButton("Analyse")
         self.analyse_button.setEnabled(False)  # Disable it at the beginning
-        self.analyse_button.clicked.connect(self.analyse_button_clicked)
+        self.analyse_button.clicked.connect(self.analyse_button_clicked_asnyc)
 
         # Output of the Analyse
         self.output_label = QLabel("Output:")
@@ -124,16 +125,17 @@ class MainWindow(QWidget):
                 self.analyse_button.setEnabled(False)
 
     # What happens when Analyse Button is clicked ?
-    def analyse_button_clicked(self):
+    def analyse_button_clicked_asnyc(self):
         # Get Inputs
         model_type: Union[str, None] = self.model_type_input.currentText()
         metadata_used: Union[bool, None] = True if self.metadata_input.currentText() == "Yes" else False
         email_content: Union[str, None] = None
         metadata_content: Union[str, None] = None
         if self.metadata_input.currentText() == "Yes":
-            email_content = self.email_message_input.toPlainText()
+            metadata_content = self.metadata_txt_input.toPlainText()
         if self.email_message_input.toPlainText() != "":
-            metadata_content = self.email_message_input.toPlainText()
+            print("Email Message: " + self.email_message_input.toPlainText())
+            email_content = self.email_message_input.toPlainText()
 
         # Analyse
         print("Model: " + model_type)
@@ -152,12 +154,9 @@ class MainWindow(QWidget):
             pass
         elif model_type == "Transformer":
             # Do something
-            predict_Spam_transformer(
-                email_content=email_content,
-                metadata_content=metadata_content,
-                path_to_model=build_model_folder_path(metadata_bool=metadata_used, model_name=model_type),
-                metadata_used=metadata_used
-            )
+            self.output_input.setText(f'''The given text is with {asyncio.run(predict_Spam_transformer(
+                email_content=email_content, metadata_content=metadata_content, metadata_used=metadata_used,
+                path_to_model=build_model_folder_path(metadata_bool=metadata_used, model_name=model_type)))}% a Spam Mail''')
 
 
 def main():
@@ -168,5 +167,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    print(build_model_folder_path(True, "Transformer"))
+    main()
+    # print(build_model_folder_path(True, "Transformer"))
