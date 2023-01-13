@@ -1,0 +1,7 @@
+.idea
+/Transformer/Spam-Classificator
+/Transformer/auto_model
+/Transformer/output_model
+/data/without meta/ham
+/data/without meta/spam
+/data/without meta/hamnspam
