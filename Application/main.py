@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QApplication, QComboBox, QFormLayout, QLabel, QLineE
     QPlainTextEdit, QPushButton
 
 from Application.transformer import predict_Spam_transformer
+from Application.spacy import predict_Spam_spacy
 
 
 # Define Function to Build Path to Model
@@ -150,8 +151,12 @@ class MainWindow(QWidget):
             # Do something
             pass
         elif model_type == "Spacy":
-            # Do something
-            pass
+            path_to_model = build_model_folder_path(metadata_bool=metadata_used, model_name=model_type)
+            prediction = predict_Spam_spacy(
+            email_content=email_content, metadata_content=metadata_content, metadata_used=metadata_used,
+            path_to_model=path_to_model)
+            self.output_input.setText(f'''The given text is with {prediction}% a Spam Mail''')
+
         elif model_type == "Transformer":
             # Do something
             self.output_input.setText(f'''The given text is with {asyncio.run(predict_Spam_transformer(
