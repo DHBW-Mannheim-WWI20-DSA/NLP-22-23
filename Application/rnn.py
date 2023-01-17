@@ -3,6 +3,8 @@ from typing import Union
 import tensorflow as tf
 import pandas as pd
 
+import asyncio
+
 
 # Define Function to Predict Spam
 async def predict_Spam_RNN(email_content: Union[str, None], metadata_content: Union[str, None],
@@ -17,25 +19,27 @@ async def predict_Spam_RNN(email_content: Union[str, None], metadata_content: Un
     """
     # Prepare Data and find appropiate model
     if metadata_used:
-        data = pd.Series([metadata_content, email_content])
+        data = pd.DataFrame([metadata_content, email_content])
         full_model_path = pathlib.Path.joinpath(path_to_model, "rnn_model_meta.tf")
     else:
         data = pd.Series(email_content)
         full_model_path = pathlib.Path.joinpath(path_to_model, "rnn_model.tf")
         
+    print(full_model_path)
     # Load module
-    model = tf.keras.models.load_model(full_model_path, compile=True)
+    model = tf.keras.models.load_model(full_model_path)
 
     # Predict
     prediction = model.predict(data, verbose=1)
-    print(prediction[0][0])
-    return prediction[0][0]
+
+    print(prediction)
+    return prediction
 
 
 if __name__ == '__main__':
-    predict_Spam_RNN(
+    asyncio.run(predict_Spam_RNN(
         email_content="Hello, could you please send me the report ?",
         metadata_content="This is a test metadata",
-        path_to_model=pathlib.Path.joinpath(pathlib.Path.cwd(), "models", "text", "RNN"),
+        path_to_model=pathlib.Path.joinpath(pathlib.Path.cwd(), "Application", "models", "text", "RNN"),
         metadata_used=False
-    )
+    ))
