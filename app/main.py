@@ -21,7 +21,7 @@ class App(tk.Tk):
         self.email_content_input.grid(row=1, column=0, sticky="nsew")
 
         self.submit_button = tk.Button(self, text="Submit", state=tk.DISABLED, command=self.predict)
-        self.submit_button.grid(row=2, columnspan=2, pady=10,sticky="nsew")
+        self.submit_button.grid(row=2, columnspan=2, pady=10, sticky="nsew")
 
         self.output_label = tk.Label(self, text="", font=("Arial", 12), anchor="center")
         self.output_label.grid(row=3, columnspan=1, pady=10)
