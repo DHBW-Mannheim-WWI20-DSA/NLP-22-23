@@ -1,7 +1,7 @@
 # NLP- Email-Spam Klassifikation 
 
-###Datensatz ohne Metadaten: https://www.kaggle.com/datasets/adarshkumarjha/email-spam-detection-sentiment-analysis
-###Datensatz mit Metadaten: https://www.kaggle.com/datasets/veleon/ham-and-spam-dataset?datasetId=107917&sortBy=voteCount
+### Datensatz ohne Metadaten: https://www.kaggle.com/datasets/adarshkumarjha/email-spam-detection-sentiment-analysis
+### Datensatz mit Metadaten: https://www.kaggle.com/datasets/veleon/ham-and-spam-dataset?datasetId=107917&sortBy=voteCount
 
 Dieses Notebook enthält die gesamten Dateien der Zusammenarbeit von Tobias Kister (Martriklnr. 9416513), Daniel Schmitz (Martriklnr. 6695185) und Amina Uicker-Darwish (Martrikelnr. )
 
